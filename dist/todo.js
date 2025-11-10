@@ -39,7 +39,6 @@ function editTask(e) {
     text.textContent = newText;
 }
 function deleteTask(e) {
-    console.log("Hi");
     let target = e.target;
     let listItem = target.parentElement;
     tasksComps?.removeChild(listItem);
