@@ -64,7 +64,6 @@ function editTask (e:Event)
 
 function deleteTask (e:Event)
 {
-    console.log("Hi")
     let target = e.target as HTMLButtonElement
     let listItem = target.parentElement
     tasksComps?.removeChild(listItem!)
