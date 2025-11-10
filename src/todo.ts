@@ -1,14 +1,10 @@
 interface taskItem
 {
-    task:string
-    id:number
+    text:HTMLSpanElement
+    editButton:HTMLButtonElement
+    deleteButton:HTMLButtonElement
 }
 
-let size = 0
-let tasks:taskItem[] = []
-
-
-let addbutton = document.querySelector("button")
 let tasksComps = document.querySelector("ul")
 let input = document.querySelector("input")
 
@@ -25,34 +21,26 @@ function addTask (e:Event)
 
     let newTaskItem: taskItem = 
     {
-        task: input!.value,
-        id: size
+        text: document.createElement('span'),
+        editButton: document.createElement('button'),
+        deleteButton: document.createElement('button'),
     }
-
-
-    size++;
-    tasks.push(newTaskItem);
 
     let listItem = document.createElement('li')
 
-    // Input Text
-    let text = document.createElement('span');
-    text.textContent = newTaskItem.task;
-
-    // Edit button
-    let edit_button = document.createElement('button')
-    edit_button.textContent = 'Edit'
+    newTaskItem.text.textContent = input!.value;
+    newTaskItem.editButton.textContent = 'Edit'
 
     // Delete button
     let delete_button = document.createElement('button')
     delete_button.textContent = "Delete"
 
-    edit_button.addEventListener("click", editTask)
-    delete_button.addEventListener("click", deleteTask)
+    newTaskItem.editButton.addEventListener("click", editTask)
+    newTaskItem.deleteButton.addEventListener("click", deleteTask)
 
-    listItem.appendChild(text)
-    listItem.appendChild(edit_button)
-    listItem.appendChild(delete_button)
+    listItem.appendChild(newTaskItem.text)
+    listItem.appendChild(newTaskItem.editButton)
+    listItem.appendChild(newTaskItem.deleteButton)
     tasksComps?.appendChild(listItem)
     input!.value = ''
 }
